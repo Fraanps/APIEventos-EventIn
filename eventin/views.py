@@ -5,7 +5,6 @@ from rest_framework.views import APIView
 
 from .models import Evento, Participante, Inscricao
 from .serializers import *
-    # EventoSerializer, ParticipanteSerializer, InscricaoSerializer, ListaInscricoesEventoSerializer, ListaIncricoesParticipantesSerializer)
 
 
 class EventoViewSet(viewsets.ModelViewSet):

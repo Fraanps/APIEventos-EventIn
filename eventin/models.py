@@ -1,12 +1,13 @@
 from django.db import models
+from django.core.validators import MinLengthValidator, EmailValidator
 
 # os models (classes) definem a estrutura dos dados de uma aplicação
 class Evento(models.Model):
-    titulo = models.CharField(max_length=100)
-    descricao = models.TextField()
-    local = models.CharField(max_length=100)
+    titulo = models.CharField(max_length=100, validators=[MinLengthValidator(5)])
+    descricao = models.TextField(validators=[MinLengthValidator(10)])
+    local = models.CharField(max_length=100, validators=[MinLengthValidator(3)])
     data_evento = models.DateTimeField()
-    capacidade = models.PositiveIntegerField()
+    capacidade = models.PositiveIntegerField(validators=[MinValueValidator(1)])
 
     def __str__(self):
         # retorna o nome do evento ao invés do endereço de memória
@@ -14,9 +15,9 @@ class Evento(models.Model):
 
 
 class Participante(models.Model):
-    nome  = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=11)
-    email = models.EmailField(max_length=100)
+    nome  = models.CharField(max_length=100, validators=[MinLengthValidator(3)])
+    cpf = models.CharField(max_length=11, unique=True, validators=[MinLengthValidator(11)])
+    email = models.EmailField(max_length=100, validators=[EmailValidator()])
     telefone = models.CharField(max_length=30)
 
     def __str__(self):
