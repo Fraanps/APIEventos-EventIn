@@ -21,3 +21,17 @@ class Participante(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Inscricao(models.Model):
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="inscricoes") # se o evento for excluído a inscrição tbm será
+    participante = models.ForeignKey(Participante, on_delete=models.CASCADE, related_name="inscricoes")
+    data_inscricao = models.DateTimeField(auto_now_add=True) # armazena a data e a hora da inscricao
+
+    def __str__(self):
+        return f"{self.participante.nome} inscrito em: {self.evento.titulo}"
+
+
+
+
+
+

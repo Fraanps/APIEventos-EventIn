@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Evento, Participante
+from .models import Evento, Participante, Inscricao
+
 
 class EventosAdmin(admin.ModelAdmin):
     list_display = ('id', 'titulo', 'local', 'data_evento', 'capacidade')
@@ -16,3 +17,11 @@ class ParticipantesAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'local')
 
 admin.site.register(Participante, ParticipantesAdmin)
+
+class InscricoesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'evento', 'participante', 'data_inscricao')
+    list_display_links = ('id',)
+    list_per_page = 20
+    search_fields = ('evento', 'participante')
+
+admin.site.register(Inscricao, InscricoesAdmin)
