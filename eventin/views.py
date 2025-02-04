@@ -1,4 +1,6 @@
 from rest_framework import viewsets, generics
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
 
 from .models import Evento, Participante, Inscricao
@@ -7,14 +9,26 @@ from .serializers import *
 
 
 class EventoViewSet(viewsets.ModelViewSet):
+    # autenticação
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     queryset = Evento.objects.all()
     serializer_class = EventoSerializer
 
 class ParticipanteViewSet(viewsets.ModelViewSet):
+    # autenticação
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     queryset = Participante.objects.all()
     serializer_class = ParticipanteSerializer
 
 class InscricaoViewSet(viewsets.ModelViewSet):
+    # autenticação
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAdminUser] # só acessa se o usuário for admin
+
     queryset = Inscricao.objects.all()
     serializer_class = InscricaoSerializer
 
