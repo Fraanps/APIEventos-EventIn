@@ -16,3 +16,17 @@ class InscricaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inscricao
         fields = '__all__'
+
+# listando inscriçoes por participantes - mostra o evento que o participante se inscreveru
+class ListaIncricoesParticipantesSerializer(serializers.ModelSerializer):
+    evento = serializers.ReadOnlyField(source='evento.titulo')
+    class Meta:
+        model = Inscricao
+        fields = ['evento', 'data_inscricao']
+
+# listando inscriçoes por evento - mostra a informação do participante por evento
+class ListaInscricoesEventoSerializer(serializers.ModelSerializer):
+    participante = serializers.ReadOnlyField(source='participante.nome')
+    class Meta:
+        model = Inscricao
+        fields = ['participante', 'data_inscricao']
