@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, EmailValidator
+from .validators import cpf_invalido
 
 # os models (classes) definem a estrutura dos dados de uma aplicação
 class Evento(models.Model):
@@ -7,7 +8,7 @@ class Evento(models.Model):
     descricao = models.TextField(validators=[MinLengthValidator(10)])
     local = models.CharField(max_length=100, validators=[MinLengthValidator(3)])
     data_evento = models.DateTimeField()
-    capacidade = models.PositiveIntegerField(validators=[MinValueValidator(1)])
+    capacidade = models.PositiveIntegerField(validators=[MinLengthValidator(1)])
 
     def __str__(self):
         # retorna o nome do evento ao invés do endereço de memória
@@ -16,9 +17,9 @@ class Evento(models.Model):
 
 class Participante(models.Model):
     nome  = models.CharField(max_length=100, validators=[MinLengthValidator(3)])
-    cpf = models.CharField(max_length=11, unique=True, validators=[MinLengthValidator(11)])
+    cpf = models.CharField(max_length=11, unique=True)
     email = models.EmailField(max_length=100, validators=[EmailValidator()])
-    telefone = models.CharField(max_length=30)
+    telefone = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -30,6 +31,5 @@ class Inscricao(models.Model):
 
     def __str__(self):
         return f"{self.participante.nome} inscrito em: {self.evento.titulo}"
-
 
 

@@ -2,4 +2,5 @@
 .idea/
 
 eventin/__pycache__/
+eventin/migrations/__pycache__/
 setup/__pycache__/
