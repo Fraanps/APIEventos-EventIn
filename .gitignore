@@ -3,4 +3,5 @@
 
 eventin/__pycache__/
 eventin/migrations/__pycache__/
+eventin/management/commands/__pycache__/
 setup/__pycache__/
