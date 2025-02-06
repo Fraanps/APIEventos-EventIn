@@ -1,92 +1,103 @@
 # API de Eventos com Django
 
-Este é um projeto acadêmico para a criação de uma API de gerenciamento de eventos utilizando **Django** e **Django REST Framework**.
+Este é um projeto acadêmico para a criação de uma API de gerenciamento de eventos utilizando o framework **Django** e a biblioteca **Django REST Framework**. A API foi documentada utilizando **Swagger**, facilitando sua exploração e integração.
+
+---
 
 ## 🚀 Tecnologias Utilizadas
 
-- **[Django](https://www.djangoproject.com/):** Framework web de alto nível para Python.
-- **[Django REST Framework](https://www.django-rest-framework.org/):** Ferramenta poderosa para criação de APIs RESTful.
+- **[Django](https://www.djangoproject.com/):** Framework web para desenvolvimento rápido e seguro.
+- **[Django REST Framework (DRF)](https://www.django-rest-framework.org/):** Conjunto de ferramentas para criação de APIs robustas em Django.
+- **[Swagger (drf-yasg)](https://drf-yasg.readthedocs.io/en/stable/):** Geração automática de documentação interativa para a API.
+
+---
 
 ## 📋 Pré-requisitos
 
-Antes de começar, certifique-se de ter instalado:
+Antes de começar, certifique-se de ter o seguinte instalado:
 
 - [Python 3.9+](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/)
-- [virtualenv](https://virtualenv.pypa.io/en/latest/) (opcional, mas recomendado)
+- [Venv](https://docs.python.org/pt-br/3.13/library/venv.html) (opcional, mas recomendado)
+
+---
 
 ## 🛠️ Instalação e Configuração
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/api-eventos.git
-   cd api-eventos
-   ```
+### 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/api-eventos.git
+cd api-eventos
+```
 
-2. **Crie e ative um ambiente virtual:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scripts\activate
-   ```
+### 2. Criação do ambiente virtual (opcional, mas recomendado)
+```bash
+python -m venv venv
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+```
 
-3. **Instale as dependências:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 3. Instalação das dependências
+```bash
+pip install -r requirements.txt
+```
 
-4. **Execute as migrações do banco de dados:**
-   ```bash
-   python manage.py migrate
-   ```
+### 4. Aplicação das migrações do banco de dados
+```bash
+python manage.py migrate
+```
 
-5. **Crie um superusuário para acessar o painel administrativo:**
-   ```bash
-   python manage.py createsuperuser
-   ```
+### 5. Criação de um superusuário (opcional, para acessar o admin Django)
+```bash
+python manage.py createsuperuser
+```
 
-6. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   python manage.py runserver
-   ```
-   A API estará disponível em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+### 6. Execução do servidor local
+```bash
+python manage.py runserver
+```
+A API estará disponível em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+---
+
+## 📜 Documentação da API
+
+A documentação interativa da API pode ser acessada através do Swagger:
+
+- **Swagger UI:** [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/)
+- **Redoc:** [http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
+
+---
 
 ## 📂 Estrutura do Projeto
 
 ```plaintext
 .
-├── eventos/                # Aplicação principal
-│   ├── migrations/         # Migrações do banco de dados
-│   ├── models.py           # Modelos do Django
-│   ├── serializers.py      # Serializadores para a API
-│   ├── views.py            # Views da API
-│   ├── urls.py             # Rotas da API
+├── .venv                  # Ambiente virtual
+├── eventin/               # Aplicação principal
+│   ├── models.py          # Modelos do banco de dados
+│   ├── serializers.py     # Serialização dos dados
+│   ├── views.py           # Lógica das rotas
+│   ├── urls.py            # Definição das rotas
+│   ├── admin.py           # Configuração do Django Admin
+│   ├── validators.py      # Validações
+│   ├── tests.py           # Testes automatizados *em implementaçãp
 │
-├── manage.py               # Gerenciador do Django
-├── db.sqlite3              # Banco de dados SQLite (apenas para desenvolvimento)
-├── requirements.txt        # Dependências do projeto
-└── README.md               # Documentação do projeto
+├── setup/                 # Configuração do projeto Django
+│   ├── settings.py        # Configurações gerais
+│   ├── urls.py            # Rotas principais
+│   ├── wsgi.py            # Ponto de entrada para o servidor
+│
+├── requirements.txt       # Dependências do projeto
+├── manage.py              # Comando principal do Django
+├── README.md              # Documentação do projeto
 ```
+
+---
 
 ## 🧪 Testes
 
-Para rodar os testes automatizados, utilize o comando:
+Para rodar os testes automatizados:
 ```bash
 python manage.py test
 ```
-
-## 🚀 Endpoints Principais
-
-- `GET /eventos/` - Lista todos os eventos.
-- `POST /eventos/` - Cria um novo evento.
-- `GET /eventos/{id}/` - Obtém detalhes de um evento específico.
-- `PUT /eventos/{id}/` - Atualiza um evento existente.
-- `DELETE /eventos/{id}/` - Remove um evento.
-
-## 🔑 Autenticação
-
-A API utiliza autenticação baseada em Token. Para obter um token de autenticação, faça uma requisição para:
-```bash
-POST /api/token/
-```
-Enviando um payload com **username** e **password**.
-
+---
