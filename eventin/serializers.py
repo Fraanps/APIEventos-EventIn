@@ -49,3 +49,8 @@ class ListaInscricoesEventoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inscricao
         fields = ['participante', 'data_inscricao']
+
+class ParticipanteSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Participante
+        fields = ["id", "nome", "email", "telefone"]
