@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eventin',
     'rest_framework',
+    'drf_yasg',
 
 ]
 
